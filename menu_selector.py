@@ -1,3 +1,7 @@
+# version#2 - 메뉴 1 을 선택할 시 파일을 읽어와 문자열 리스트를 객체 리스트로 변환 및 출력 구현 / 메뉴 4를 선택할 시 프로그램 종료 및 Exit 출력 구현
+import parking_spot_manager
+
+
 def start_process(path):
     while True:
         print("---menu---")
@@ -7,7 +11,10 @@ def start_process(path):
         print("[4] exit")
         select = int(input('type:'))
         if select == 1:
-            print("not implemented yet")
+            import file_manager
+            str_list = file_manager.read_file("./input/free_parking_spot_seoul.csv")
+            spots = parking_spot_manager.str_list_to_class_list(str_list)
+            parking_spot_manager.print_spots(spots)
             # fill this block
         elif select == 2:
             print("---filter by---")
@@ -52,7 +59,8 @@ def start_process(path):
                 # fill this block
             else: print("invalid input")
         elif select == 4:
-            print("not implemented yet")
+            print("Exit")
+            return
             # fill this block
         else:
             print("invalid input")
