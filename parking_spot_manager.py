@@ -42,12 +42,57 @@ def print_spots(spots):
         print(i)
 
 
+# 이름으로 필터링하여 새로운 객체 리스트를 반환하는 메서드
+def filter_by_name(spots, name):
+    res = list()
+    for spot in spots:
+        if name in spot.get('name'):
+            res.append(spot)
+    return res
+
+
+# 도시명으로 필터링하여 새로운 객체 리스트를 반환하는 메서드
+def filter_by_city(spots, city):
+    res = list()
+    for spot in spots:
+        if city in spot.get('city'):
+            res.append(spot)
+    return res
+
+
+# 시군구로 필터링하여 새로운 객체 리스트를 반환하는 메서드
+def filter_by_district(spots, district):
+    res = list()
+    for spot in spots:
+        if district in spot.get('district'):
+            res.append(spot)
+    return res
+
+
+# 주차장 유형 필터링하여 새로운 객체 리스트를 반환하는 메서드
+def filter_by_ptype(spots, ptype):
+    res = list()
+    for spot in spots:
+        if ptype in spot.get('ptype'):
+            res.append(spot)
+    return res
+
+
+# 위치 필터링하여 새로운 객체 리스트를 반환하는 메서드
+def filter_by_location(spots, locations):
+    res = list()
+    for spot in spots:
+        if locations[0] < float(spot.get('latitude')) < locations[1] and locations[2] < float(spot.get('longitude')) < locations[3]:
+            res.append(spot)
+    return res
+
+
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 
 if __name__ == '__main__':
     print("Testing the module...")
     # version#2
-    # import file_manager
+    import file_manager
     # str_list = file_manager.read_file("./input/free_parking_spot_seoul.csv")
     # spots = str_list_to_class_list(str_list)
     # print_spots(spots)
