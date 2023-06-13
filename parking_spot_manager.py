@@ -1,4 +1,7 @@
 # version#2 - parking_spot 생성자 및 get 메서드 구현 / 파일을 읽어와 문자열 리스트를 객체 리스트로 변환 후 출력 구현
+# version#3 - filter_by_name, filter_by_city, filter_by_district, filter_by_ptype, filter_by_location 메서드 구현
+# version#4 - sorted_by_keyword 메서드 구현
+
 
 # parking_spot 클래스
 class parking_spot:
@@ -30,7 +33,7 @@ def str_list_to_class_list(str_list):
     res = list()
     for info in str_list:
         temp = info.split(',')
-        place_info = parking_spot(temp[1], temp[2], temp[3], temp[4], temp[5], temp[6])
+        place_info = parking_spot(*temp[1:7])
         res.append(place_info)
     return res
 
@@ -84,6 +87,12 @@ def filter_by_location(spots, locations):
     for spot in spots:
         if locations[0] < float(spot.get('latitude')) < locations[1] and locations[2] < float(spot.get('longitude')) < locations[3]:
             res.append(spot)
+    return res
+
+
+# 키워드 값에 따라 정렬하는 메서드
+def sorted_by_keyword(spots, keyword):
+    res = sorted(spots, key=lambda x: x.get(keyword))
     return res
 
 
